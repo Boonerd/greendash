@@ -1,97 +1,81 @@
-[{
-	"resource": "/c:/Users/Patriciah Mbua/greendash/app/page.tsx",
-	"owner": "typescript",
-	"code": "2307",
-	"severity": 8,
-	"message": "Cannot find module '../constants' or its corresponding type declarations.",
-	"source": "ts",
-	"startLineNumber": 2,
-	"startColumn": 48,
-	"endLineNumber": 2,
-	"endColumn": 62,
-	"origin": "extHost1"
-},{
-	"resource": "/c:/Users/Patriciah Mbua/greendash/app/page.tsx",
-	"owner": "typescript",
-	"code": "2307",
-	"severity": 8,
-	"message": "Cannot find module '../types' or its corresponding type declarations.",
-	"source": "ts",
-	"startLineNumber": 3,
-	"startColumn": 26,
-	"endLineNumber": 3,
-	"endColumn": 36,
-	"origin": "extHost1"
-},{
-	"resource": "/c:/Users/Patriciah Mbua/greendash/app/page.tsx",
-	"owner": "typescript",
-	"code": "2307",
-	"severity": 8,
-	"message": "Cannot find module './Button' or its corresponding type declarations.",
-	"source": "ts",
-	"startLineNumber": 5,
-	"startColumn": 24,
-	"endLineNumber": 5,
-	"endColumn": 34,
-	"origin": "extHost1"
-},{
-	"resource": "/c:/Users/Patriciah Mbua/greendash/app/page.tsx",
-	"owner": "typescript",
-	"code": "7006",
-	"severity": 8,
-	"message": "Parameter 'item' implicitly has an 'any' type.",
-	"source": "ts",
-	"startLineNumber": 39,
-	"startColumn": 32,
-	"endLineNumber": 39,
-	"endColumn": 36,
-	"origin": "extHost1"
-},{
-	"resource": "/c:/Users/Patriciah Mbua/greendash/app/page.tsx",
-	"owner": "typescript",
-	"code": "7006",
-	"severity": 8,
-	"message": "Parameter 'i' implicitly has an 'any' type.",
-	"source": "ts",
-	"startLineNumber": 79,
-	"startColumn": 64,
-	"endLineNumber": 79,
-	"endColumn": 65,
-	"origin": "extHost1"
-},{
-	"resource": "/c:/Users/Patriciah Mbua/greendash/app/page.tsx",
-	"owner": "typescript",
-	"code": "7006",
-	"severity": 8,
-	"message": "Parameter 'i' implicitly has an 'any' type.",
-	"source": "ts",
-	"startLineNumber": 83,
-	"startColumn": 110,
-	"endLineNumber": 83,
-	"endColumn": 111,
-	"origin": "extHost1"
-},{
-	"resource": "/c:/Users/Patriciah Mbua/greendash/src/auth/AuthContext.tsx",
-	"owner": "typescript",
-	"code": "2307",
-	"severity": 8,
-	"message": "Cannot find module '@/lib/firebase' or its corresponding type declarations.",
-	"source": "ts",
-	"startLineNumber": 11,
-	"startColumn": 22,
-	"endLineNumber": 11,
-	"endColumn": 38,
-	"origin": "extHost1"
-},{
-	"resource": "/c:/Users/Patriciah Mbua/greendash/src/components/Login.tsx",
-	"owner": "typescript",
-	"code": "2307",
-	"severity": 8,
-	"message": "Cannot find module '@/auth/AuthContext' or its corresponding type declarations.",
-	"source": "ts",
-	"startLineNumber": 2,
-	"startColumn": 25,
-	"endLineNumber": 2,
-	"endColumn": 45,
-	"origin": "extHost1"
-}]
+"use client";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { 
+  onAuthStateChanged, 
+  User as FirebaseUser, 
+  GoogleAuthProvider, 
+  signInWithPopup, 
+  signOut 
+} from "firebase/auth";
+import { auth } from "../lib/firebase";
+
+// Wrapper interface
+export interface User {
+  uid: string;
+  displayName: string | null;
+  email: string | null;
+  photoURL: string | null;
+}
+
+interface AuthContextType {
+  user: User | null;
+  loading: boolean;
+  signInWithGoogle: () => Promise<void>;
+  logout: () => Promise<void>;
+}
+
+const AuthContext = createContext<AuthContextType>({
+  user: null,
+  loading: true,
+  signInWithGoogle: async () => {},
+  logout: async () => {},
+});
+
+export const useAuth = () => useContext(AuthContext);
+
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
+        setUser({
+          uid: firebaseUser.uid,
+          displayName: firebaseUser.displayName,
+          email: firebaseUser.email,
+          photoURL: firebaseUser.photoURL
+        });
+      } else {
+        setUser(null);
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const signInWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      console.error("Error signing in with Google", error);
+      throw error;
+    }
+  };
+
+  const logout = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("Error signing out", error);
+    }
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, loading, signInWithGoogle, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};

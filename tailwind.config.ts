@@ -11,37 +11,41 @@ const config: Config = {
     extend: {
       colors: {
         forest: {
-          DEFAULT: '#1A4D2E',
-          light: '#2C6E45',
-          dark: '#0F2F1C',
+          DEFAULT: '#2E7D32', // Cleaner, natural leaf green
+          light: '#4CAF50',
+          dark: '#1B5E20',
         },
         cream: {
-          DEFAULT: '#F4F1EA',
-          dark: '#E0DCD3',
+          DEFAULT: '#F2F0E9', // Slightly darker for better contrast with white cards
+          dark: '#EBE5D9',
         },
         lime: {
-          DEFAULT: '#90A955',
-          hover: '#7A9144',
+          DEFAULT: '#C0CA33', // Secondary accent
+          hover: '#AFB42B',
         },
-        earth: '#D4A373',
-        clay: '#BC6C25'
+        gold: {
+          DEFAULT: '#FBC02D', // Rich Gold for "Dash"
+          light: '#FDD835',
+        },
+        earth: '#8D6E63',
+        clay: '#D84315'
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],
       },
       animation: {
+        'fade-in': 'fadeIn 0.4s ease-out forwards',
         'sway': 'sway 3s ease-in-out infinite',
-        'fade-in': 'fadeIn 0.5s ease-out forwards',
       },
       keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(5px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
         sway: {
           '0%, 100%': { transform: 'rotate(-5deg)' },
           '50%': { transform: 'rotate(5deg)' },
         },
-        fadeIn: {
-          '0%': { opacity: '0', transform: 'translateY(10px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        }
       }
     },
   },

@@ -24,11 +24,19 @@ export interface MarketItem {
   change: string;
 }
 
-export type View = 'home' | 'scan' | 'market' | 'chat';
+export type View = 'home' | 'scan' | 'market' | 'chat' | 'profile';
 
 export interface CropAnalysisResult {
   diagnosis: string;
   confidence: number;
   treatment: string;
   healthy: boolean;
+}
+
+export interface UserProfile {
+  name: string;
+  phone: string;
+  county: string;
+  farmSize: string;
+  crops: string[];
 }

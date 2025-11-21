@@ -1,11 +1,10 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
 }
 
 @layer utilities {
@@ -15,4 +14,11 @@
   .safe-area-bottom {
     padding-bottom: env(safe-area-inset-bottom);
   }
+}
+
+/* Global smooth transitions */
+* {
+  transition-property: color, background-color, border-color;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
 }
