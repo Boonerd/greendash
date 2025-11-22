@@ -65,8 +65,8 @@ export const DesktopSidebar: React.FC<NavProps> = ({ currentView, setView, lang 
   return (
     <aside className="hidden lg:flex flex-col w-64 h-screen fixed left-0 top-0 bg-forest text-white p-6 shadow-2xl z-50">
       <div className="flex items-center gap-3 mb-12 px-2">
-         <div className="bg-lime p-2 rounded-xl shadow-lg shadow-lime/20 border border-lime/30">
-           <Sprout size={24} className="text-forest-dark" />
+         <div className="bg-white p-2 rounded-xl shadow-lg">
+           <Sprout size={24} className="text-forest" />
          </div>
          <div>
             <h1 className="text-2xl font-bold tracking-tight leading-none text-white">

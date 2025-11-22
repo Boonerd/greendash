@@ -11,16 +11,16 @@ const config: Config = {
     extend: {
       colors: {
         forest: {
-          DEFAULT: '#2E7D32', // Cleaner, natural leaf green
+          DEFAULT: '#2E7D32', // Vibrant leaf green
           light: '#4CAF50',
           dark: '#1B5E20',
         },
         cream: {
-          DEFAULT: '#F2F0E9', // Slightly darker for better contrast with white cards
+          DEFAULT: '#F9F7F2', // Warm premium cream
           dark: '#EBE5D9',
         },
         lime: {
-          DEFAULT: '#C0CA33', // Secondary accent
+          DEFAULT: '#C0CA33',
           hover: '#AFB42B',
         },
         gold: {

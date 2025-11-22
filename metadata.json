@@ -1,0 +1,5 @@
+{
+  "name": "GreenDash",
+  "description": "A precision agriculture dashboard for Kenyan farmers. Features AI crop analysis, market prices, and weather insights in Swahili and English.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenDash - Shamba Smart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              forest: {
+                DEFAULT: '#1A4D2E',
+                light: '#2C6E45',
+                dark: '#0F2F1C',
+              },
+              cream: {
+                DEFAULT: '#F4F1EA',
+                dark: '#E0DCD3',
+              },
+              lime: {
+                DEFAULT: '#90A955',
+                hover: '#7A9144',
+              },
+              earth: '#D4A373',
+              clay: '#BC6C25'
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            animation: {
+              'sway': 'sway 3s ease-in-out infinite',
+              'fade-in': 'fadeIn 0.5s ease-out forwards',
+            },
+            keyframes: {
+              sway: {
+                '0%, 100%': { transform: 'rotate(-5deg)' },
+                '50%': { transform: 'rotate(5deg)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          },
+        },
+      };
+    </script>
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "next/": "https://aistudiocdn.com/next@^16.0.3/",
+    "next": "https://aistudiocdn.com/next@^16.0.3",
+    "tailwindcss": "https://aistudiocdn.com/tailwindcss@^4.1.17",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/"
+  }
+}
+</script>
+</head>
+  <body class="bg-cream text-forest-dark dark:bg-forest-dark dark:text-cream transition-colors duration-300 antialiased selection:bg-lime selection:text-white">
+    <div id="root"></div>
+  </body>
+</html>
