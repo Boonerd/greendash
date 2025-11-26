@@ -1,18 +1,18 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// src/app/layout.tsx
 import "./globals.css";
-import { AuthProvider } from "../context/AuthContext";
-import ApplyDarkMode from "./apply-dark-mode";
+import { Inter } from "next/font/google";
+import { AuthProvider } from "../context/AuthContext";;
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
-export const metadata: Metadata = { /* your metadata */ };
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} antialiased bg-cream text-gray-900`}>
-        <ApplyDarkMode />
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} antialiased min-h-screen bg-cream dark:bg-dark-bg text-gray-900 dark:text-[#d4edda]`}>
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>

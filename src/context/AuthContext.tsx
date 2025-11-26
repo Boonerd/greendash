@@ -2,7 +2,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { 
   onAuthStateChanged, 
-  User as FirebaseUser, 
   GoogleAuthProvider, 
   signInWithPopup,
   signInWithEmailAndPassword,
