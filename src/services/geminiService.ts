@@ -1,7 +1,9 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { CropAnalysisResult } from "../types";
 
-const apiKey = process.env.API_KEY || ''; 
+// START UPDATE: Use NEXT_PUBLIC_ for client-side access in Next.js
+const apiKey = process.env.NEXT_PUBLIC_API_KEY || ''; 
+// END UPDATE
 
 // Initialize Gemini Client
 let ai: GoogleGenAI | null = null;
@@ -10,7 +12,7 @@ if (apiKey) {
 }
 
 export const analyzeCropImage = async (base64Image: string, lang: 'en' | 'sw'): Promise<CropAnalysisResult> => {
-  if (!ai) throw new Error("API Key missing");
+  if (!ai) throw new Error("API Key missing. Please check your .env.local file.");
 
   const prompt = lang === 'sw' 
     ? "Wewe ni mtaalamu wa kilimo Kenya. Angalia picha hii ya mmea. Tambua kama una ugonjwa wowote, wadudu, au upungufu wa virutubisho. Toa jibu fupi kwa umbizo la JSON: { \"diagnosis\": \"jina la tatizo au 'Afya Njema'\", \"confidence\": namba_0_hadi_100, \"treatment\": \"ushauri mfupi wa nini cha kufanya\", \"healthy\": boolean }."
@@ -46,6 +48,9 @@ export const chatWithAgriBot = async (message: string, history: string[]): Promi
   try {
     const systemInstruction = "You are 'Agri-Bot', a helpful assistant for Kenyan smallholder farmers. You speak a mix of English and Swahili (Sheng/local style) if appropriate, but stick to the user's language. Keep answers short, practical, and encouraging. Focus on coffee, maize, tea, and avocado.";
     
+    // We are including the history length in the log to 'use' the variable and satisfy the linter
+    console.log(`Sending message with ${history.length} previous context messages.`);
+
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: message,

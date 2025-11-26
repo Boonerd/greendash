@@ -1,4 +1,3 @@
-
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
@@ -18,6 +17,7 @@ export async function POST(request: Request) {
       data: data 
     });
   } catch (error) {
+    console.error("API Error:", error); // Log error to use the variable
     return NextResponse.json(
       { success: false, message: "Failed to update profile" },
       { status: 500 }
