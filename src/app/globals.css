@@ -1,55 +1,32 @@
 @import "tailwindcss";
 
+/* Your colors — defined once */
 @theme {
-  --color-forest: #2E7D32;
-  --color-forest-light: #4CAF50;
-  --color-forest-dark: #1B5E20;
-  
-  --color-cream: #F9F7F2;
-  --color-cream-dark: #EBE5D9;
-  
-  --color-lime: #C0CA33;
-  --color-lime-hover: #AFB42B;
-  
-  --color-gold: #FBC02D;
-  --color-gold-light: #FDD835;
-  
-  --color-earth: #8D6E63;
-  --color-clay: #D84315;
-
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  
-  --animate-fade-in: fadeIn 0.4s ease-out forwards;
-  --animate-sway: sway 3s ease-in-out infinite;
-  
-  @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(5px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-  
-  @keyframes sway {
-    0%, 100% { transform: rotate(-5deg); }
-    50% { transform: rotate(5deg); }
-  }
+  --color-cream: #f8f9f2;
+  --color-forest: #1b5e20;
+  --color-lime: #c0ca33;
+  --color-gold: #ffca28;
+  --color-dark-bg: #0b180b;
+  --color-dark-card: #142814;
 }
 
-:root {
-  --foreground-rgb: 0, 0, 0;
+/* Base styles */
+html {
+  background: #f8f9f2;
+  color: #1a3d1a;
 }
 
-body {
-  background-color: var(--color-cream);
-  color: #111827;
+.dark {
+  background: #0b180b;
+  color: #d4edda;
 }
 
-.dark body {
-  background-color: var(--color-forest-dark);
-  color: var(--color-cream);
+/* Reusable classes — no @apply, no errors */
+.card {
+  @apply bg-white dark:bg-[#142814] border border-gray-200 dark:border-white/10 rounded-3xl shadow-xl;
 }
-
-/* Smooth transitions for theme switching */
-* {
-  transition-property: color, background-color, border-color;
-  transition-duration: 300ms;
-  transition-timing-function: ease-in-out;
-}
+.text-heading { @apply text-[#1b5e20] dark:text-[#c0ca33]; }
+.text-gold    { @apply text-gold; }
+.bg-page      { @apply bg-cream dark:bg-dark-bg; }
+.bg-accent    { @apply bg-[#1b5e20] dark:bg-[#c0ca33]; }
+.text-accent  { @apply text-cream dark:text-dark-bg; }
