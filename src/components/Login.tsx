@@ -106,8 +106,8 @@ export const Login: React.FC = () => {
           
           <div className="w-full max-w-sm">
             <Image 
-              src="/Farmer-rafiki.svg" 
-              alt="Farmer illustration" 
+              src="/woman farmer.jpeg" 
+              alt="Farmer" 
               width={400} 
               height={400}
               priority

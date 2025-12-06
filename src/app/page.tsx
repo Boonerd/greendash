@@ -16,27 +16,38 @@ const App: React.FC = () => {
   const { user, loading, logout } = useAuth();
   const [view, setView] = useState<View>('home');
   const [lang, setLang] = useState<Language>('en');
+  const [isDark, setIsDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // Dark Mode Logic
+  // Dark Mode Logic - Fixed version
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
     const saved = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const shouldBeDark = saved === 'dark' || (!saved && prefersDark);
 
     if (shouldBeDark) {
       document.documentElement.classList.add('dark');
+      setIsDark(true);
     } else {
       document.documentElement.classList.remove('dark');
+      setIsDark(false);
     }
   }, []);
 
   const toggleDarkMode = () => {
-    document.documentElement.classList.toggle('dark');
-    const isNowDark = document.documentElement.classList.contains('dark');
-    localStorage.setItem('theme', isNowDark ? 'dark' : 'light');
+    const newDarkState = !isDark;
+    setIsDark(newDarkState);
+    
+    if (newDarkState) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
   };
-
-  const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
 
   if (loading) {
     return (
@@ -91,7 +102,7 @@ const App: React.FC = () => {
               onClick={toggleDarkMode}
               className="p-2.5 rounded-full bg-forest/5 dark:bg-white/5 hover:bg-forest/10 dark:hover:bg-white/10 transition-colors text-forest dark:text-lime"
             >
-              {isDark ? <Sun size={20} /> : <Moon size={20} />}
+              {mounted && (isDark ? <Sun size={20} /> : <Moon size={20} />)}
             </button>
 
             <button onClick={logout} className="p-2.5 rounded-full hover:bg-red-50 dark:hover:bg-red-900/20 text-gray-400 hover:text-red-500 transition-colors">
@@ -157,7 +168,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({ lang, setView, user }) =>
              </div>
           </div>
           
-          <p className="mt-6 text-sm text-gray-600 dark:text-gray-300 max-w-md italic border-l-4 border-lime pl-4 py-1 bg-linear-to-r from-lime/10 to-transparent rounded-r-lg">
+          <p className="mt-6 text-sm text-gray-600 dark:text-gray-300 max-w-md italic border-l-4 border-lime pl-4 py-1 bg-linear-to-rrom-lime/10 to-transparent rounded-r-lg">
             &quot;{MOCK_WEATHER.advice[lang]}&quot;
           </p>
         </div>
