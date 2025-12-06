@@ -1,4 +1,3 @@
-/* src/app/globals.css */
 @import "tailwindcss";
 
 @theme {
@@ -17,9 +16,6 @@
   
   --color-earth: #8D6E63;
   --color-clay: #D84315;
-  
-  --color-dark-bg: #0f1f0f;
-  --color-dark-card: #1a2e1a;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   
@@ -37,52 +33,22 @@
   }
 }
 
-/* ==========================================
-   LIGHT MODE (Default)
-   ========================================== */
 :root {
-  color-scheme: light;
+  --foreground-rgb: 0, 0, 0;
 }
 
 body {
-  min-height: 100vh;
-  margin: 0;
-  /* LIGHT MODE: Cream background, dark green text */
   background-color: var(--color-cream);
-  color: var(--color-forest-dark);
-}
-
-/* ==========================================
-   DARK MODE
-   ========================================== */
-.dark {
-  color-scheme: dark;
+  color: #111827;
 }
 
 .dark body {
-  /* DARK MODE: Dark background, bright cream text */
-  background-color: var(--color-dark-bg);
-  color: #f5f5dc; /* Bright cream/beige */
+  background-color: var(--color-forest-dark);
+  color: var(--color-cream);
 }
 
-/* Make sure all text is visible in dark mode */
-.dark h1,
-.dark h2,
-.dark h3,
-.dark h4,
-.dark h5,
-.dark h6 {
-  color: #f5f5dc; /* Bright text */
-}
-
-.dark p {
-  color: #e8e8d0; /* Slightly dimmer but still bright */
-}
-
-/* Smooth transitions */
-*,
-*::before,
-*::after {
+/* Smooth transitions for theme switching */
+* {
   transition-property: color, background-color, border-color;
   transition-duration: 300ms;
   transition-timing-function: ease-in-out;

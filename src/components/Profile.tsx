@@ -97,7 +97,7 @@ export const Profile: React.FC<ProfileProps> = ({ lang }) => {
 
       {/* User Info Card */}
       <div className="bg-white dark:bg-forest-light/10 p-6 rounded-2xl shadow-lg shadow-gray-100 dark:shadow-none border border-gray-100 dark:border-white/5 flex items-center gap-5">
-        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-forest to-lime flex items-center justify-center text-3xl font-bold text-white shadow-md">
+        <div className="w-20 h-20 rounded-full bg-linear-to-br from-forest to-lime flex items-center justify-center text-3xl font-bold text-white shadow-md">
           {profile.name.charAt(0)}
         </div>
         <div>
