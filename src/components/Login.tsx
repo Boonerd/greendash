@@ -84,60 +84,65 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cream flex items-center justify-center p-4">
+    <div className="min-h-screen bg-cream dark:bg-[#051F10] flex items-center justify-center p-4 transition-colors duration-300">
       <div className="w-full max-w-5xl grid lg:grid-cols-2 gap-12 items-center">
         
-        {/* Left Side - Farmer Illustration & Branding */}
+        {/* Left Side - Clean Image & Branding */}
         <div className="hidden lg:flex flex-col items-center justify-center space-y-6">
-          <div className="text-center mb-4">
-            <div className="inline-flex items-center gap-3 mb-2">
-              <div className="bg-forest p-3 rounded-2xl shadow-lg">
-                <Sprout size={36} className="text-white" />
-              </div>
+          {/* Branding */}
+          <div className="text-center">
+            <div className="inline-flex bg-forest dark:bg-lime p-3 rounded-2xl mb-3 shadow-lg transition-colors duration-300">
+              <Sprout size={36} className="text-white dark:text-forest-dark" />
             </div>
             <h1 className="text-5xl font-bold mb-2">
-              <span className="text-forest">Green</span>
-              <span className="text-gold">Dash</span>
+              <span className="text-forest dark:text-cream">Green</span>
+              <span className="text-gold dark:text-gold-light">Dash</span>
             </h1>
-            <p className="text-lg text-forest font-medium">
+            <p className="text-lg text-forest dark:text-lime font-medium">
               Shamba Smart. Harvest Strong.
             </p>
           </div>
           
-          <div className="w-full max-w-sm">
-            <Image 
-              src="/woman farmer.jpeg" 
-              alt="Farmer" 
-              width={400} 
-              height={400}
-              priority
-              className="w-full h-auto drop-shadow-xl"
-            />
+          {/* Clean circular image */}
+          <div className="relative w-80 h-80">
+            <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-forest/20 dark:border-lime/20 shadow-2xl transition-colors duration-300">
+              <Image 
+                src="/woman farmer.jpeg"
+                alt="Kenyan Woman Farmer"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
           
-          <p className="text-gray-700 text-center max-w-md text-base">
-            Join Kenyan farmers growing smarter with AI-powered crop insights, weather forecasts, and market prices.
-          </p>
+          {/* Text below */}
+          <div className="text-center max-w-md">
+            <h3 className="text-2xl font-bold mb-2 text-forest-dark dark:text-cream">Empowering Farmers</h3>
+            <p className="text-gray-700 dark:text-gray-300 text-base">
+              Join thousands of Kenyan farmers using smart technology to grow better harvests
+            </p>
+          </div>
         </div>
 
         {/* Right Side - Auth Form */}
         <div className="w-full max-w-md mx-auto">
-          <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+          <div className="bg-white dark:bg-white/5 p-8 rounded-xl shadow-lg border border-gray-200 dark:border-white/10 transition-colors duration-300">
             
             {/* Mobile Logo */}
             <div className="lg:hidden text-center mb-6">
-              <div className="inline-flex bg-forest p-3 rounded-2xl mb-3 shadow-lg">
-                <Sprout size={28} className="text-white" />
+              <div className="inline-flex bg-forest dark:bg-lime p-3 rounded-2xl mb-3 shadow-lg transition-colors duration-300">
+                <Sprout size={28} className="text-white dark:text-forest-dark" />
               </div>
               <h1 className="text-3xl font-bold">
-                <span className="text-forest">Green</span>
-                <span className="text-gold">Dash</span>
+                <span className="text-forest dark:text-cream">Green</span>
+                <span className="text-gold dark:text-gold-light">Dash</span>
               </h1>
-              <p className="text-forest text-sm mt-1 font-medium">Shamba Smart. Harvest Strong.</p>
+              <p className="text-forest dark:text-lime text-sm mt-1 font-medium">Shamba Smart. Harvest Strong.</p>
             </div>
 
-            {/* Tab Headers - Strathmore Style */}
-            <div className="flex gap-6 mb-6 border-b border-gray-200">
+            {/* Tab Headers */}
+            <div className="flex gap-6 mb-6 border-b border-gray-200 dark:border-white/10">
               <button
                 onClick={() => {
                   setIsSignUp(false);
@@ -146,8 +151,8 @@ export const Login: React.FC = () => {
                 }}
                 className={`pb-3 text-sm font-semibold transition-all border-b-2 ${
                   !isSignUp 
-                    ? 'border-forest text-forest' 
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                    ? 'border-forest dark:border-lime text-forest dark:text-lime' 
+                    : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
                 }`}
               >
                 Sign In
@@ -160,8 +165,8 @@ export const Login: React.FC = () => {
                 }}
                 className={`pb-3 text-sm font-semibold transition-all border-b-2 ${
                   isSignUp 
-                    ? 'border-forest text-forest' 
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                    ? 'border-forest dark:border-lime text-forest dark:text-lime' 
+                    : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
                 }`}
               >
                 Sign Up
@@ -173,57 +178,57 @@ export const Login: React.FC = () => {
               
               {isSignUp && (
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1.5">
                     Full Name
                   </label>
                   <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500" size={16} />
                     <input
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
                       placeholder="John Kamau"
-                      className="w-full pl-9 pr-3 py-2 text-sm bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-1 focus:ring-forest focus:border-forest transition-all placeholder:text-gray-400"
+                      className="w-full pl-9 pr-3 py-2 text-sm bg-white dark:bg-white/5 text-gray-900 dark:text-cream border border-gray-300 dark:border-white/10 rounded-lg focus:ring-1 focus:ring-forest dark:focus:ring-lime focus:border-forest dark:focus:border-lime transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500"
                     />
                   </div>
                 </div>
               )}
 
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1.5">
                   Email Address
                 </label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500" size={16} />
                   <input
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     placeholder="farmer@example.com"
                     required
-                    className="w-full pl-9 pr-3 py-2 text-sm bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-1 focus:ring-forest focus:border-forest transition-all placeholder:text-gray-400"
+                    className="w-full pl-9 pr-3 py-2 text-sm bg-white dark:bg-white/5 text-gray-900 dark:text-cream border border-gray-300 dark:border-white/10 rounded-lg focus:ring-1 focus:ring-forest dark:focus:ring-lime focus:border-forest dark:focus:border-lime transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1.5">
                   Password
                 </label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500" size={16} />
                   <input
                     type={showPassword ? "text" : "password"}
                     value={formData.password}
                     onChange={(e) => setFormData({...formData, password: e.target.value})}
                     placeholder="••••••••"
                     required
-                    className="w-full pl-9 pr-10 py-2 text-sm bg-white text-gray-900 border border-gray-300 rounded-lg focus:ring-1 focus:ring-forest focus:border-forest transition-all placeholder:text-gray-400"
+                    className="w-full pl-9 pr-10 py-2 text-sm bg-white dark:bg-white/5 text-gray-900 dark:text-cream border border-gray-300 dark:border-white/10 rounded-lg focus:ring-1 focus:ring-forest dark:focus:ring-lime focus:border-forest dark:focus:border-lime transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
                   >
                     {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
@@ -232,23 +237,23 @@ export const Login: React.FC = () => {
 
               {/* Messages */}
               {error && (
-                <div className="text-red-600 bg-red-50 p-2.5 rounded-lg text-xs border border-red-200">
+                <div className="text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 p-2.5 rounded-lg text-xs border border-red-200 dark:border-red-800">
                   {error}
                 </div>
               )}
 
               {success && (
-                <div className="text-green-700 bg-green-50 p-2.5 rounded-lg text-xs border border-green-200">
+                <div className="text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 p-2.5 rounded-lg text-xs border border-green-200 dark:border-green-800">
                   {success}
                 </div>
               )}
 
-              {/* Strathmore-Style Buttons - Small & Clean */}
+              {/* Buttons */}
               <div className="space-y-3 pt-2">
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-white text-forest text-sm font-semibold py-2.5 px-4 rounded-lg border-2 border-forest hover:bg-forest hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full bg-white dark:bg-white/5 text-forest dark:text-lime text-sm font-semibold py-2.5 px-4 rounded-lg border-2 border-forest dark:border-lime hover:bg-forest dark:hover:bg-lime hover:text-white dark:hover:text-forest-dark transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   <User size={16} />
                   {loading ? "Processing..." : (isSignUp ? "Create Account" : "Sign In")}
@@ -258,7 +263,7 @@ export const Login: React.FC = () => {
                   type="button"
                   onClick={handleGoogleLogin}
                   disabled={loading}
-                  className="w-full bg-white text-gray-700 text-sm font-semibold py-2.5 px-4 rounded-lg border-2 border-gray-300 hover:bg-gray-50 hover:border-gray-400 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="w-full bg-white dark:bg-white/5 text-gray-700 dark:text-cream text-sm font-semibold py-2.5 px-4 rounded-lg border-2 border-gray-300 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/10 hover:border-gray-400 dark:hover:border-white/20 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
                 >
                   <svg width="16" height="16" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4" />
@@ -271,7 +276,7 @@ export const Login: React.FC = () => {
               </div>
             </form>
 
-            <p className="text-xs text-center text-gray-500 mt-6">
+            <p className="text-xs text-center text-gray-500 dark:text-gray-400 mt-6">
               By continuing, you agree to help Kenyan agriculture grow. 🌱
             </p>
           </div>

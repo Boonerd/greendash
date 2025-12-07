@@ -1,18 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-forest: #2E7D32;
-  --color-forest-light: #4CAF50;
-  --color-forest-dark: #1B5E20;
+  /* Beautiful Green Palette for Agribusiness */
+  --color-forest: #2D6A4F;
+  --color-forest-light: #52B788;
+  --color-forest-dark: #1B4332;
+  
+  --color-meadow: #74C69D;
+  --color-sage: #95D5B2;
   
   --color-cream: #F9F7F2;
   --color-cream-dark: #EBE5D9;
   
-  --color-lime: #C0CA33;
-  --color-lime-hover: #AFB42B;
+  --color-lime: #A7C957;
+  --color-lime-hover: #8FB339;
   
-  --color-gold: #FBC02D;
-  --color-gold-light: #FDD835;
+  --color-gold: #F2A541;
+  --color-gold-light: #F4C430;
   
   --color-earth: #8D6E63;
   --color-clay: #D84315;
@@ -33,23 +37,215 @@
   }
 }
 
-:root {
-  --foreground-rgb: 0, 0, 0;
+/* Base layer - Essential Tailwind styles */
+@layer base {
+  :root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 249, 247, 242;
+    --background-end-rgb: 255, 255, 255;
+  }
+
+  /* Dark mode root variables */
+  .dark {
+    --foreground-rgb: 249, 247, 242;
+    --background-start-rgb: 27, 67, 50;
+    --background-end-rgb: 5, 31, 16;
+  }
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #F9F7F2;
+    color: #1f2937;
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Dark mode body styles */
+  .dark body {
+    background-color: #051F10;
+    color: #F9F7F2;
+  }
+
+  /* Smooth transitions for theme switching */
+  * {
+    transition-property: color, background-color, border-color, box-shadow;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  /* Links */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Buttons */
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+  }
+
+  /* Images */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Form elements */
+  input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  /* Remove default focus styles and add custom ones */
+  *:focus {
+    outline: none;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #A7C957;
+    outline-offset: 2px;
+  }
+
+  .dark *:focus-visible {
+    outline-color: #A7C957;
+  }
 }
 
-body {
-  background-color: var(--color-cream);
-  color: #111827;
+/* Components layer - for custom component styles */
+@layer components {
+  .btn-primary {
+    @apply bg-forest hover:bg-forest-dark text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-cream dark:bg-white/10 hover:bg-cream-dark dark:hover:bg-white/20 text-forest dark:text-lime font-medium px-6 py-3 rounded-xl transition-all duration-300 border border-forest/20 dark:border-white/20;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-white/5 rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-white/10 transition-all duration-300;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl bg-white dark:bg-white/5 border border-gray-300 dark:border-white/10 text-gray-900 dark:text-cream placeholder-gray-400 dark:placeholder-gray-500 focus:border-forest dark:focus:border-lime focus:ring-2 focus:ring-forest/20 dark:focus:ring-lime/20 transition-all duration-300;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider;
+  }
+
+  .badge-success {
+    @apply bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300;
+  }
+
+  .badge-warning {
+    @apply bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300;
+  }
+
+  .badge-info {
+    @apply bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300;
+  }
 }
 
-.dark body {
-  background-color: var(--color-forest-dark);
-  color: var(--color-cream);
+/* Utilities layer - for custom utility classes */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-forest to-lime dark:from-lime dark:to-white;
+  }
+
+  .glass-effect {
+    @apply bg-white/80 dark:bg-white/5 backdrop-blur-lg;
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(167, 201, 87, 0.3);
+  }
+
+  .dark .shadow-glow {
+    box-shadow: 0 0 20px rgba(167, 201, 87, 0.5);
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-white/5 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-forest/30 dark:bg-lime/30 rounded-full hover:bg-forest/50 dark:hover:bg-lime/50;
+  }
 }
 
-/* Smooth transitions for theme switching */
-* {
-  transition-property: color, background-color, border-color;
-  transition-duration: 300ms;
-  transition-timing-function: ease-in-out;
+/* Animation classes */
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-sway {
+  animation: sway 3s ease-in-out infinite;
+}
+
+/* Rounded corners utility for larger values */
+.rounded-4xl {
+  border-radius: 2rem;
+}
+
+.rounded-5xl {
+  border-radius: 2.5rem;
+}
+
+/* Prevent flash of unstyled content */
+html:not(.dark) {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* Ensure images in dark mode don't appear too bright */
+.dark img:not([class*="brightness"]) {
+  filter: brightness(0.95);
+}
+
+/* Print styles */
+@media print {
+  * {
+    transition: none !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
 }
