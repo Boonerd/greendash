@@ -1,9 +1,8 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { CropAnalysisResult } from "../types";
 
-// START UPDATE: Use NEXT_PUBLIC_ for client-side access in Next.js
+// Use NEXT_PUBLIC_ for client-side access in Next.js
 const apiKey = process.env.NEXT_PUBLIC_API_KEY || ''; 
-// END UPDATE
 
 // Initialize Gemini Client
 let ai: GoogleGenAI | null = null;
@@ -42,26 +41,42 @@ export const analyzeCropImage = async (base64Image: string, lang: 'en' | 'sw'): 
   }
 };
 
-export const chatWithAgriBot = async (message: string, history: string[]): Promise<string> => {
-  if (!ai) throw new Error("API Key missing");
+interface ChatMessage {
+  role: 'user' | 'bot';
+  text: string;
+}
+
+export const chatWithAgriBot = async (messages: ChatMessage[]): Promise<string> => {
+  if (!ai) return "Error: API Key is missing. Please check your configuration.";
 
   try {
-    const systemInstruction = "You are 'Agri-Bot', a helpful assistant for Kenyan smallholder farmers. You speak a mix of English and Swahili (Sheng/local style) if appropriate, but stick to the user's language. Keep answers short, practical, and encouraging. Focus on coffee, maize, tea, and avocado.";
+    const systemInstruction = `
+      You are 'Agri-Bot', an expert agricultural assistant for Kenyan farmers.
+      
+      RULES:
+      1. LANGUAGE: If the user writes in English, YOU MUST REPLY IN ENGLISH. If the user writes in Swahili, YOU MUST REPLY IN SWAHILI. Do not mix languages unless explicitly asked.
+      2. TONE: Be practical, encouraging, and brief.
+      3. TOPICS: Focus on crops like Coffee, Tea, Maize, Avocado, and general farm management in Kenya.
+    `;
     
-    // We are including the history length in the log to 'use' the variable and satisfy the linter
-    console.log(`Sending message with ${history.length} previous context messages.`);
+    // Transform app messages to Gemini Content format
+    const contents = messages.map(msg => ({
+      role: msg.role === 'user' ? 'user' : 'model',
+      parts: [{ text: msg.text }]
+    }));
 
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
-      contents: message,
+      contents: contents, // Send full history for context
       config: {
         systemInstruction: systemInstruction,
       }
     });
     
-    return response.text || "Sorry, I couldn't understand that. Jaribu tena.";
+    // Access the text property directly
+    return response.text || "I'm having trouble thinking right now. Please try again.";
   } catch (error) {
     console.error("Gemini Chat Error:", error);
-    return "Network error. Please try again later.";
+    return "Connection error. Please check your internet or API key.";
   }
 };

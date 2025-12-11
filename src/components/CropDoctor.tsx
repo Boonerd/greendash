@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { Camera, Upload, CheckCircle, AlertTriangle, X } from 'lucide-react';
+import { Camera, CheckCircle, AlertTriangle, X } from 'lucide-react';
 import { Button } from './Button';
 import { analyzeCropImage } from '../services/geminiService';
 import { CropAnalysisResult, Language } from '../types';
 import { TRANSLATIONS } from '../constants';
+import Image from 'next/image';
 
 interface CropDoctorProps {
   lang: Language;
@@ -43,6 +44,7 @@ export const CropDoctor: React.FC<CropDoctorProps> = ({ lang }) => {
       const base64Data = image.split(',')[1];
       const result = await analyzeCropImage(base64Data, lang);
       setAnalysis(result);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setError(t.error_api);
     } finally {
@@ -82,11 +84,17 @@ export const CropDoctor: React.FC<CropDoctorProps> = ({ lang }) => {
           />
         </div>
       ) : (
-        <div className="relative rounded-2xl overflow-hidden shadow-xl bg-black">
-          <img src={image} alt="Crop" className="w-full h-64 object-cover opacity-90" />
+        <div className="relative rounded-2xl overflow-hidden shadow-xl bg-black h-64 w-full">
+          {/* Replaced img with Next.js Image */}
+          <Image 
+            src={image} 
+            alt="Crop" 
+            fill
+            className="object-cover opacity-90" 
+          />
           <button 
             onClick={handleReset}
-            className="absolute top-2 right-2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 backdrop-blur-sm"
+            className="absolute top-2 right-2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 backdrop-blur-sm z-10"
           >
             <X size={20} />
           </button>
@@ -114,9 +122,9 @@ export const CropDoctor: React.FC<CropDoctorProps> = ({ lang }) => {
         <div className="bg-white dark:bg-forest-light/20 p-6 rounded-2xl shadow-sm border border-forest/10 dark:border-lime/10 animate-fade-in">
           <div className="flex items-start gap-4 mb-4">
             {analysis.healthy ? (
-              <CheckCircle className="text-lime w-8 h-8 flex-shrink-0" />
+              <CheckCircle className="text-lime w-8 h-8 shrink-0" />
             ) : (
-              <AlertTriangle className="text-amber-500 w-8 h-8 flex-shrink-0" />
+              <AlertTriangle className="text-amber-500 w-8 h-8 shrink-0" />
             )}
             <div>
               <h3 className="text-xl font-bold text-forest dark:text-cream">
