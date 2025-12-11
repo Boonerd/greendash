@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { MOCK_MARKET_DATA, TRANSLATIONS } from '../constants';
 import { Language } from '../types';
-import { TrendingUp, TrendingDown, Minus, ArrowRight, LineChart, X } from 'lucide-react';
+import { TrendingUp, TrendingDown, Minus, LineChart, X } from 'lucide-react';
 import { Button } from './Button';
 
 interface MarketPlaceProps {
@@ -73,7 +73,7 @@ export const MarketPlace: React.FC<MarketPlaceProps> = ({ lang }) => {
                </button>
                <Button 
                   variant="primary" 
-                  className="!py-2 !px-4 text-xs !rounded-lg h-9"
+                  className="py-2! px-4! text-xs rounded-lg! h-9"
                   onClick={() => handleBuy(item.id)}
                 >
                   Buy Now
@@ -95,7 +95,7 @@ export const MarketPlace: React.FC<MarketPlaceProps> = ({ lang }) => {
 
       {/* Payment Modal Overlay */}
       {selectedItem && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+        <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
           <div className="bg-white dark:bg-forest-dark border border-gray-200 dark:border-gray-700 w-full max-w-sm rounded-2xl p-6 shadow-2xl">
             {!paymentSuccess ? (
               <>
