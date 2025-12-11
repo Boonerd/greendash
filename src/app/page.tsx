@@ -9,7 +9,7 @@ import { Login } from '../components/Login';
 import { useAuth, User } from '../context/AuthContext';
 import { TRANSLATIONS, MOCK_WEATHER } from '../constants';
 import { Language, View } from '../types';
-import { CloudRain, Droplets, Camera, ShoppingBag, MessageCircle, Settings, LogOut, Sprout, Leaf, TrendingUp, Users, CheckCircle } from 'lucide-react';
+import { CloudRain, Droplets, Camera, ShoppingBag, MessageCircle, Settings, LogOut, Sprout, Leaf, TrendingUp, CheckCircle } from 'lucide-react';
 import Image from "next/image";
 
 const App: React.FC = () => {
@@ -140,7 +140,7 @@ const SplashScreen: React.FC = () => (
 
 // ============= ABOUT PAGE =============
 const AboutPage: React.FC<{ onGetStarted: () => void }> = ({ onGetStarted }) => (
-  <div className="min-h-screen bg-gradient-to-br from-cream via-[#f7f3ed] to-[#faf8f4] overflow-y-auto">
+  <div className="min-h-screen bg-linear-to-br from-cream via-[#f7f3ed] to-[#faf8f4] overflow-y-auto">
     <div className="max-w-6xl mx-auto px-6 py-12">
       {/* Header */}
       <div className="text-center mb-16 animate-fade-in">
@@ -251,7 +251,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({ lang, setView, user }) =>
           
           <h2 className="text-4xl sm:text-5xl font-extrabold mb-3 leading-tight text-forest-dark tracking-tight">
             {t.welcome}, <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-forest via-lime to-gold">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-forest via-lime to-gold">
               {user.displayName?.split(' ')[0] || 'Farmer'}
             </span>
           </h2>
@@ -274,13 +274,13 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({ lang, setView, user }) =>
              </div>
           </div>
           
-          <p className="mt-6 text-sm text-gray-600 max-w-md italic border-l-4 border-gold pl-4 py-1 bg-gradient-to-r from-gold/10 to-transparent rounded-r-lg">
+          <p className="mt-6 text-sm text-gray-600 max-w-md italic border-l-4 border-gold pl-4 py-1 bg-linear-to-r from-gold/10 to-transparent rounded-r-lg">
             &quot;{MOCK_WEATHER.advice[lang]}&quot;
           </p>
         </div>
 
         {/* Right: Image Content */}
-        <div className="relative w-48 h-48 sm:w-56 sm:h-56 shrink-0 mt-4 sm:mt-0 bg-gradient-to-br from-gold/20 via-cream to-lime/20 rounded-full flex items-center justify-center border-4 border-white shadow-2xl shadow-forest/10 backdrop-blur-sm">
+        <div className="relative w-48 h-48 sm:w-56 sm:h-56 shrink-0 mt-4 sm:mt-0 bg-linear-to-br from-gold/20 via-cream to-lime/20 rounded-full flex items-center justify-center border-4 border-white shadow-2xl shadow-forest/10 backdrop-blur-sm">
            <Image 
              src="/woman farmer.jpeg" 
              alt="Farmer"
@@ -296,7 +296,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({ lang, setView, user }) =>
       <section>
         <h3 className="text-lg font-bold text-forest-dark mb-5 flex items-center gap-3">
            {t.actions}
-           <span className="h-px flex-1 bg-gradient-to-r from-forest/20 to-transparent ml-2"></span>
+           <span className="h-px flex-1 bg-linear-to-r from-forest/20 to-transparent ml-2"></span>
         </h3>
         <div className="grid grid-cols-2 gap-5">
            <ActionCard 
@@ -384,7 +384,7 @@ const ActionCard: React.FC<ActionCardProps> = ({ icon, title, subtitle, onClick 
           </div>
        </div>
        {/* Decorative BG shape */}
-       <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-gradient-to-br from-gold/10 to-lime/10 rounded-full group-hover:scale-150 transition-transform duration-500 z-0"></div>
+       <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-linear-to-br from-gold/10 to-lime/10 rounded-full group-hover:scale-150 transition-transform duration-500 z-0"></div>
     </button>
   );
 };
