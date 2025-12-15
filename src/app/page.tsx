@@ -107,7 +107,7 @@ const App: React.FC = () => {
 
 // ============= SPLASH SCREEN =============
 const SplashScreen: React.FC = () => (
-  <div className="min-h-screen bg-linear-to-br from-forest via-[#1a5c3a] to-[#0d3d26] flex items-center justify-center overflow-hidden relative">
+  <div className="min-h-screen bg-linear-to-br from-forest via-[#1d4731] to-[#0d3d26] flex items-center justify-center overflow-hidden relative">
     {/* Animated background circles */}
     <div className="absolute inset-0 overflow-hidden">
       <div className="absolute top-20 left-20 w-64 h-64 bg-lime/10 rounded-full blur-3xl animate-pulse"></div>

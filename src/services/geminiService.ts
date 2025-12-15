@@ -2,7 +2,7 @@ import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { CropAnalysisResult } from "../types";
 
 // Use NEXT_PUBLIC_ for client-side access in Next.js
-const apiKey = process.env.NEXT_PUBLIC_API_KEY || ''; 
+const apiKey = process.env.AIzaSyCgz2hevZeDbVBEAZqfyrVCPkMAC8D_Cjo || ''; 
 
 // Initialize Gemini Client
 let ai: GoogleGenAI | null = null;
