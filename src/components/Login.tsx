@@ -75,11 +75,11 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cream via-cream to-[#faf8f4] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-br from-cream via-cream to-[#faf8f4] flex items-center justify-center p-4">
       <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-0 items-stretch rounded-3xl overflow-hidden shadow-2xl bg-white">
         
         {/* Left Side - Hero */}
-        <div className="hidden lg:flex flex-col items-center justify-center relative bg-gradient-to-br from-forest to-[#0d3d26] p-12 overflow-hidden">
+        <div className="hidden lg:flex flex-col items-center justify-center relative bg-linear-to-br from-forest to-[#0d3d26] p-12 overflow-hidden">
           <div className="absolute top-10 right-10 w-32 h-32 bg-lime/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 left-10 w-40 h-40 bg-gold/10 rounded-full blur-3xl"></div>
           
@@ -132,7 +132,7 @@ export const Login: React.FC = () => {
           <div className="w-full max-w-md mx-auto">
             
             <div className="lg:hidden text-center mb-8">
-               <div className="inline-block p-3 bg-gradient-to-br from-forest to-lime rounded-2xl mb-3 shadow-lg">
+               <div className="inline-block p-3 bg-linear-to-br from-forest to-lime rounded-2xl mb-3 shadow-lg">
                  <Sprout size={28} className="text-white" />
                </div>
                <h1 className="text-2xl font-bold mb-1">
@@ -238,15 +238,15 @@ export const Login: React.FC = () => {
                  <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-gradient-to-r from-forest to-forest-light text-white text-base font-bold py-4 rounded-xl hover:shadow-lg active:scale-[0.98] transition-all disabled:opacity-50"
+                    className="w-full bg-linear-to-r from-forest to-forest-light text-white text-base font-bold py-4 rounded-xl hover:shadow-lg active:scale-[0.98] transition-all disabled:opacity-50"
                  >
                     {loading ? "Processing..." : (isSignUp ? "Create Account" : "Sign In")}
                  </button>
 
                  <div className="relative flex py-3 items-center">
-                    <div className="flex-grow border-t-2 border-gray-100"></div>
+                    <div className="grow border-t-2 border-gray-100"></div>
                     <span className="shrink-0 mx-4 text-gray-400 text-xs font-bold uppercase">Or</span>
-                    <div className="flex-grow border-t-2 border-gray-100"></div>
+                    <div className="grow border-t-2 border-gray-100"></div>
                  </div>
 
                  <button
